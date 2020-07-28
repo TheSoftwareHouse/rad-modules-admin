@@ -19,7 +19,7 @@ import { AttributeDetailsPage } from "./pages/attributes/AttributeDetailsPage";
 import { JobsPage } from "./pages/jobs/JobsPage";
 import { UsersPage } from "./pages/users/UsersPage";
 import { NotFoundPage } from "./pages/not-found/NotFoundPage";
-import { moduleAvailability } from "./tools/moduleAvailability";
+import { isModuleEnabled, moduleAvailability } from "./tools/moduleAvailability";
 
 function App() {
   const loggedOutUser = {
@@ -34,9 +34,8 @@ function App() {
 
   const [user, setUser] = useState(loggedOutUser);
 
-  const isModuleEnabled = moduleName => {
-    const modules = (process.env.REACT_APP_MODULES ?? "").split(",");
-    return modules.includes(moduleName);
+  const isEnabled = moduleName => {
+    return isModuleEnabled(moduleName);
   };
 
   const logIn = (username, accessToken, refreshToken) => {
@@ -119,10 +118,10 @@ function App() {
           </>
         ) : (
           <UserContext.Provider value={{ user, logIn, logOut }}>
-            <Layout isModuleEnabled={isModuleEnabled}>
+            <Layout isModuleEnabled={isEnabled}>
               {user.isAuthorized ? (
                 <Switch>
-                  <Route path="/" component={IndexPage} exact />
+                  <Route path="/" render={() => IndexPage(isEnabled)} exact />
                   <Route path="/users" component={moduleAvailability("security", UsersPage)} exact />
                   <Route path="/users/:userId" component={moduleAvailability("security", UserDetailsPage)} exact />
                   <Route path="/policies" component={moduleAvailability("security", PoliciesPage)} exact />
