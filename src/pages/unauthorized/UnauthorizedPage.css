@@ -1,0 +1,14 @@
+.unauthorized-page {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  height: calc(100vh - 200px);
+  min-height: 200px;
+}
+
+.unauthorized-page .unauthorized-message {
+  font-size: xx-large;
+}

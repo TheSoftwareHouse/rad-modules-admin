@@ -1,0 +1,46 @@
+.login-page {
+  background-color: #f7fdff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  background-color: #fff;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #20b7d938;
+  border-radius: 10px;
+  box-shadow: 5px 9px 10px 0px rgba(0, 0, 0, 0.06);
+}
+
+.login-google-btn {
+  height: auto;
+  background-color: #020202;
+  border-color: #020202;
+}
+
+.login-logo {
+  width: 200px;
+  margin: 3rem 3rem;
+}
+
+.powered-by {
+  margin-top: 1rem;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+.login-error-message {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}

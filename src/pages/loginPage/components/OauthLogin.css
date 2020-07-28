@@ -1,0 +1,44 @@
+.oauthLogin {
+  font-size: 14px !important;
+}
+
+/* Google */
+.loginBtn--google {
+  background-color: #DD4B39;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+  background-color: #fff;
+  color: #DD4B39;
+}
+
+/* Facebook */
+.loginBtn--facebook {
+  background-color: #4C69BA;
+  color: #fff;
+  width: 100%;
+}
+
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background-color: #fff;
+  color: #4C69BA;
+}
+
+/* Microsoft */
+.loginBtn--microsoft {
+  background-color: #00a4ef;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.loginBtn--microsoft:hover,
+.loginBtn--microsoft:focus {
+  background-color: #fff;
+  color: #00a4ef;
+}

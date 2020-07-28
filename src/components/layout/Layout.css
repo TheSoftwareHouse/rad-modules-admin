@@ -1,0 +1,28 @@
+.ant-layout {
+  height: 100%;
+}
+
+.layout-navbar {
+  display: flex;
+}
+
+.navbar-menu {
+  flex: 1;
+}
+
+.navbar-profile {
+  color: white;
+}
+
+.navbar-profile a {
+  color: white;
+}
+
+.navbar-profile span {
+  margin-right: 0.5rem;
+}
+
+mark {
+  padding: 0;
+  margin: 0;
+}

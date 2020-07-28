@@ -1,0 +1,27 @@
+image: qh4r/pipelines:latest
+
+pipelines:
+  default:
+    - step:
+        name: Linter
+        caches:
+          - node
+        services:
+          - docker
+        script:
+          - npm run docker-build-dev
+          - npm run lint
+
+  custom:
+    deploy-rad-admin:
+      - step:
+          name: Build and push rad-admin to DockerHub
+          script:
+            - bash ./ci-scripts/docker-release.sh ./docker/prod/Dockerfile ./package.json
+          services:
+            - docker
+
+definitions:
+  services:
+    docker:
+      memory: 2048

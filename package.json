@@ -1,0 +1,50 @@
+{
+  "name": "rad-admin",
+  "version": "0.0.10",
+  "private": true,
+  "dependencies": {
+    "antd": "3.26.12",
+    "axios": "^0.19.0",
+    "http-status-codes": "1.4.0",
+    "js-cookie": "^2.2.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docker-build": "docker build -t rad-admin:latest -f ./docker/prod/Dockerfile .",
+    "docker-build-dev": "docker build -t rad-admin-dev:latest -f ./docker/dev/Dockerfile .",
+    "version": "echo $npm_package_version",
+    "watch": "docker-compose up security-admin",
+    "lint": "docker-compose run --rm js ./node_modules/.bin/eslint -c ./eslint.json --ext .js ./",
+    "format": "docker-compose run --rm js ./node_modules/.bin/prettier --write \"**/**/*.js\" -c \"./eslint.json --ext .js ./build/*\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  }
+}

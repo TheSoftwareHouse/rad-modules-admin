@@ -1,0 +1,7 @@
+.loading-page {
+  background-color: #f7fdff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,32 @@
+v0.0.10 2020-07-27 feature/RAD-200-cancel-active-jobs
+
++ Add "Cancel Job" action available in active repeatable jobs 
+------
+v0.0.9 2020-07-23 feature/RAD-266-integrate-with-admin-panel
+
++ Add "Schedule Job" action 
+------
+v0.0.8 2020-07-23 feature/RAD-266-integrate-with-admin-panel
+
++ Add Jobs section that shows all scheduled jobs 
+------
+v0.0.7 2020-05-12 feature/RAD-233-create-user-with-attributes
+
++ Add a new optional parameter (attributes) to add a user modal. Now user can be created with attributes
+------
+v0.0.6 2020-04-27 feature/RAD-197-microsoft-auth-provider
+
++ Add Microsoft auth provider
+------
+v0.0.5 2020-04-23 feature/RAD-191-autocomplete-create-policy-modal
+                  refactor/RAD-212-delete-user
+                  feature/RAD-207-enabled-providers-settitngs
+
++ Add autocomplete to create policy modal
++ Refactor deleteUser (move userId from body to query)
++ Add REACT_APP_ENABLED_PROVIDERS config variable
+------
+v0.0.4 2020-04-15 feature/RAD-187-base-policies-improvements
+
++ Base policies read-only
+------
