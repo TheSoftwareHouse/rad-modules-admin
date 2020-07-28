@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 12
+services:
+  - docker
+jobs:
+  include:
+    - stage: default
+      script:
+        - npm run docker-build-dev
+        - npm run lint
+
+    - stage: deploy-rad-admin-to-docker-hub
+      if: tag =~ /^rad-admin/
+      name: "Deploy RAD admin to DockerHub"
+      script: bash ./ci-scripts/docker-release.sh ./docker/prod/Dockerfile ./package.json
