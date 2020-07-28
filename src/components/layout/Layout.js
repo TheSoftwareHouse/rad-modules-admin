@@ -45,25 +45,32 @@ export default function Layout(props) {
         >
           {user.isAuthorized && (
             <Menu.Item key="/">
-              <Link to="/">Users</Link>
+              <Link to="/">
+                <Icon type="home" style={{ marginRight: 0 }} />
+              </Link>
             </Menu.Item>
           )}
-          {user.isAuthorized && (
+          {props.isModuleEnabled("security") && user.isAuthorized && (
+            <Menu.Item key="/users">
+              <Link to="/users">Users</Link>
+            </Menu.Item>
+          )}
+          {props.isModuleEnabled("security") && user.isAuthorized && (
             <Menu.Item key="/policies">
               <Link to="/policies">Policies</Link>
             </Menu.Item>
           )}
-          {user.isAuthorized && (
+          {props.isModuleEnabled("security") && user.isAuthorized && (
             <Menu.Item key="/attributes">
               <Link to="/attributes">Attributes</Link>
             </Menu.Item>
           )}
-          {user.isAuthorized && (
+          {props.isModuleEnabled("security") && user.isAuthorized && (
             <Menu.Item key="/access-keys">
               <Link to="/access-keys">Access keys</Link>
             </Menu.Item>
           )}
-          {user.isAuthorized && (
+          {props.isModuleEnabled("scheduler") && user.isAuthorized && (
             <Menu.Item key="/jobs">
               <Link to="/jobs">Jobs</Link>
             </Menu.Item>

@@ -9,7 +9,7 @@ import httpClient from "./tools/httpClient";
 import UserContext from "./contexts/UserContext";
 import { LoadingPage } from "./pages/loadingPage/LoadingPage";
 import { UnauthorizedPage } from "./pages/unauthorized/UnauthorizedPage";
-import { UsersPage } from "./pages/users/UsersPage";
+import { IndexPage } from "./pages/index/IndexPage";
 import { UserDetailsPage } from "./pages/users/UserDetailsPage";
 import { AttributesPage } from "./pages/attributes/AttributesPage";
 import { PoliciesPage } from "./pages/policies/PoliciesPage";
@@ -17,6 +17,7 @@ import { PolicyDetailsPage } from "./pages/policies/PolicyDetailsPage";
 import { AccessKeysPage } from "./pages/access-keys/AccessKeysPage";
 import { AttributeDetailsPage } from "./pages/attributes/AttributeDetailsPage";
 import { JobsPage } from "./pages/jobs/JobsPage";
+import { UsersPage } from "./pages/users/UsersPage";
 
 function App() {
   const loggedOutUser = {
@@ -30,6 +31,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const [user, setUser] = useState(loggedOutUser);
+
+  const isModuleEnabled = moduleName => {
+    const modules = (process.env.REACT_APP_MODULES ?? "").split(",");
+    return modules.includes(moduleName);
+  };
 
   const logIn = (username, accessToken, refreshToken) => {
     localStorage.setItem("username", username);
@@ -111,10 +117,11 @@ function App() {
           </>
         ) : (
           <UserContext.Provider value={{ user, logIn, logOut }}>
-            <Layout>
+            <Layout isModuleEnabled={isModuleEnabled}>
               {user.isAuthorized ? (
                 <Switch>
-                  <Route path="/" component={UsersPage} exact />
+                  <Route path="/" component={IndexPage} exact />
+                  <Route path="/users" component={UsersPage} exact />
                   <Route path="/users/:userId" component={UserDetailsPage} exact />
                   <Route path="/policies" component={PoliciesPage} exact />
                   <Route path="/attributes" component={AttributesPage} exact />
