@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./App.css";
 import Layout from "./components/layout/Layout";
@@ -18,6 +18,8 @@ import { AccessKeysPage } from "./pages/access-keys/AccessKeysPage";
 import { AttributeDetailsPage } from "./pages/attributes/AttributeDetailsPage";
 import { JobsPage } from "./pages/jobs/JobsPage";
 import { UsersPage } from "./pages/users/UsersPage";
+import { NotFoundPage } from "./pages/not-found/NotFoundPage";
+import { moduleAvailability } from "./tools/moduleAvailability";
 
 function App() {
   const loggedOutUser = {
@@ -121,14 +123,24 @@ function App() {
               {user.isAuthorized ? (
                 <Switch>
                   <Route path="/" component={IndexPage} exact />
-                  <Route path="/users" component={UsersPage} exact />
-                  <Route path="/users/:userId" component={UserDetailsPage} exact />
-                  <Route path="/policies" component={PoliciesPage} exact />
-                  <Route path="/attributes" component={AttributesPage} exact />
-                  <Route path="/access-keys" component={AccessKeysPage} exact />
-                  <Route path="/jobs" component={JobsPage} exact />
-                  <Route path="/policies/details/:attributeName/:policyName+" component={PolicyDetailsPage} exact />
-                  <Route path="/users/attribute/:attributeName" component={AttributeDetailsPage} exact />
+                  <Route path="/users" component={moduleAvailability("security", UsersPage)} exact />
+                  <Route path="/users/:userId" component={moduleAvailability("security", UserDetailsPage)} exact />
+                  <Route path="/policies" component={moduleAvailability("security", PoliciesPage)} exact />
+                  <Route path="/attributes" component={moduleAvailability("security", AttributesPage)} exact />
+                  <Route path="/access-keys" component={moduleAvailability("security", AccessKeysPage)} exact />
+                  <Route path="/jobs" component={moduleAvailability("scheduler", JobsPage)} exact />
+                  <Route
+                    path="/policies/details/:attributeName/:policyName+"
+                    component={moduleAvailability("security", PolicyDetailsPage)}
+                    exact
+                  />
+                  <Route
+                    path="/users/attribute/:attributeName"
+                    component={moduleAvailability("security", AttributeDetailsPage)}
+                    exact
+                  />
+                  <Route path="/404" exact component={NotFoundPage} />
+                  <Route path="*" render={() => <Redirect to="/404" />} />
                 </Switch>
               ) : (
                 <UnauthorizedPage></UnauthorizedPage>
