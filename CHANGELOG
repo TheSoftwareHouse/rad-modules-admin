@@ -1,3 +1,7 @@
+v0.0.11 2020-07-28 feature/RAD-278-add-module-configuration-to-admin
+
++ Add configuration through ENV variable to enable/disable modules  
+------
 v0.0.10 2020-07-27 feature/RAD-200-cancel-active-jobs
 
 + Add "Cancel Job" action available in active repeatable jobs 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./App.css";
 import Layout from "./components/layout/Layout";
@@ -9,7 +9,7 @@ import httpClient from "./tools/httpClient";
 import UserContext from "./contexts/UserContext";
 import { LoadingPage } from "./pages/loadingPage/LoadingPage";
 import { UnauthorizedPage } from "./pages/unauthorized/UnauthorizedPage";
-import { UsersPage } from "./pages/users/UsersPage";
+import { IndexPage } from "./pages/index/IndexPage";
 import { UserDetailsPage } from "./pages/users/UserDetailsPage";
 import { AttributesPage } from "./pages/attributes/AttributesPage";
 import { PoliciesPage } from "./pages/policies/PoliciesPage";
@@ -17,6 +17,9 @@ import { PolicyDetailsPage } from "./pages/policies/PolicyDetailsPage";
 import { AccessKeysPage } from "./pages/access-keys/AccessKeysPage";
 import { AttributeDetailsPage } from "./pages/attributes/AttributeDetailsPage";
 import { JobsPage } from "./pages/jobs/JobsPage";
+import { UsersPage } from "./pages/users/UsersPage";
+import { NotFoundPage } from "./pages/not-found/NotFoundPage";
+import { isModuleEnabled, moduleAvailability } from "./tools/moduleAvailability";
 
 function App() {
   const loggedOutUser = {
@@ -30,6 +33,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const [user, setUser] = useState(loggedOutUser);
+
+  const isEnabled = moduleName => {
+    return isModuleEnabled(moduleName);
+  };
 
   const logIn = (username, accessToken, refreshToken) => {
     localStorage.setItem("username", username);
@@ -111,17 +118,28 @@ function App() {
           </>
         ) : (
           <UserContext.Provider value={{ user, logIn, logOut }}>
-            <Layout>
+            <Layout isModuleEnabled={isEnabled}>
               {user.isAuthorized ? (
                 <Switch>
-                  <Route path="/" component={UsersPage} exact />
-                  <Route path="/users/:userId" component={UserDetailsPage} exact />
-                  <Route path="/policies" component={PoliciesPage} exact />
-                  <Route path="/attributes" component={AttributesPage} exact />
-                  <Route path="/access-keys" component={AccessKeysPage} exact />
-                  <Route path="/jobs" component={JobsPage} exact />
-                  <Route path="/policies/details/:attributeName/:policyName+" component={PolicyDetailsPage} exact />
-                  <Route path="/users/attribute/:attributeName" component={AttributeDetailsPage} exact />
+                  <Route path="/" render={() => IndexPage(isEnabled)} exact />
+                  <Route path="/users" component={moduleAvailability("security", UsersPage)} exact />
+                  <Route path="/users/:userId" component={moduleAvailability("security", UserDetailsPage)} exact />
+                  <Route path="/policies" component={moduleAvailability("security", PoliciesPage)} exact />
+                  <Route path="/attributes" component={moduleAvailability("security", AttributesPage)} exact />
+                  <Route path="/access-keys" component={moduleAvailability("security", AccessKeysPage)} exact />
+                  <Route path="/jobs" component={moduleAvailability("scheduler", JobsPage)} exact />
+                  <Route
+                    path="/policies/details/:attributeName/:policyName+"
+                    component={moduleAvailability("security", PolicyDetailsPage)}
+                    exact
+                  />
+                  <Route
+                    path="/users/attribute/:attributeName"
+                    component={moduleAvailability("security", AttributeDetailsPage)}
+                    exact
+                  />
+                  <Route path="/404" exact component={NotFoundPage} />
+                  <Route path="*" render={() => <Redirect to="/404" />} />
                 </Switch>
               ) : (
                 <UnauthorizedPage></UnauthorizedPage>
