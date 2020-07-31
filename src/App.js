@@ -17,6 +17,7 @@ import { PolicyDetailsPage } from "./pages/policies/PolicyDetailsPage";
 import { AccessKeysPage } from "./pages/access-keys/AccessKeysPage";
 import { AttributeDetailsPage } from "./pages/attributes/AttributeDetailsPage";
 import { JobsPage } from "./pages/jobs/JobsPage";
+import { NotificationsPage } from "./pages/notifications/NotificationsPage";
 import { UsersPage } from "./pages/users/UsersPage";
 import { NotFoundPage } from "./pages/not-found/NotFoundPage";
 import { isModuleEnabled, moduleAvailability } from "./tools/moduleAvailability";
@@ -128,6 +129,11 @@ function App() {
                   <Route path="/attributes" component={moduleAvailability("security", AttributesPage)} exact />
                   <Route path="/access-keys" component={moduleAvailability("security", AccessKeysPage)} exact />
                   <Route path="/jobs" component={moduleAvailability("scheduler", JobsPage)} exact />
+                  <Route
+                    path="/notifications"
+                    component={moduleAvailability("notifications", NotificationsPage)}
+                    exact
+                  />
                   <Route
                     path="/policies/details/:attributeName/:policyName+"
                     component={moduleAvailability("security", PolicyDetailsPage)}

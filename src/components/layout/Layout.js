@@ -75,6 +75,11 @@ export default function Layout(props) {
               <Link to="/jobs">Jobs</Link>
             </Menu.Item>
           )}
+          {props.isModuleEnabled("notifications") && user.isAuthorized && (
+            <Menu.Item key="/notifications">
+              <Link to="/notifications">Notifications</Link>
+            </Menu.Item>
+          )}
         </Menu>
         <div className="navbar-profile">
           <Dropdown overlay={profileMenu(logOut)}>
