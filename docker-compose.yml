@@ -9,10 +9,11 @@ services:
     environment:
       REACT_APP_SECURITY_API_URL: "http://localhost:50050"
       REACT_APP_SCHEDULER_API_URL: "http://localhost:50053"
+      REACT_APP_NOTIFICATIONS_API_URL: "http://localhost:50052"
       REACT_APP_ENABLED_PROVIDERS: "google,facebook,microsoft"
       REACT_APP_GOOGLE_AUTH_URL: "https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&response_type=code&client_id=1024671591387-1h85kq8p747i478ouqinaq5tm5953u17.apps.googleusercontent.com&redirect_uri=https://lvh.me:3000/login-callback/google"
       REACT_APP_FACEBOOK_AUTH_URL: "https://www.facebook.com/v6.0/dialog/oauth?client_id=959016991183154&redirect_uri=http://localhost:3000/login-callback/facebook&scope=email&response_type=code&auth_type=rerequest&display=popup"
-      REACT_APP_MODULES: "security,scheduler"
+      REACT_APP_MODULES: "security,scheduler,notifications"
     volumes:
       - .:/app:delegated
     networks:

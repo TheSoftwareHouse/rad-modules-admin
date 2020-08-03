@@ -346,6 +346,18 @@ class HttpClient {
       .delete(`${process.env.REACT_APP_SCHEDULER_API_URL}/api/scheduling/cancel-job?jobId=${jobId}`)
       .catch(this.handleError);
   }
+
+  getNotifications(page = 0, limit = 25, filter, order = "") {
+    return this.httpClient
+      .get(
+        `${
+          process.env.REACT_APP_NOTIFICATIONS_API_URL
+        }/api/notifications/get-notifications?page=${page}&limit=${limit}${filter === "" ? filter : "&" + filter}${
+          order === "" ? order : "&" + order
+        }`,
+      )
+      .catch(this.handleError);
+  }
 }
 
 export default new HttpClient();
