@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Result, Table } from "antd";
+import { Button, Result } from "antd";
 
 export function NotFoundPage() {
   return (

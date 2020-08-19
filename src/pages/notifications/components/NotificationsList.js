@@ -1,11 +1,10 @@
 import React from "react";
-import { Icon, Popconfirm, Table } from "antd";
-import { Highlighted } from "../../../tools/highlighted";
+import { Table } from "antd";
 
 const parseDateTimeString = text => text.replace("T", " ").substring(0, text.length - 5);
 
 function NotificationsList(props) {
-  const { data, total, limit, currentPage, setCurrentPage, fetchData, jobCancel, highlight } = props;
+  const { data, total, limit, currentPage, setCurrentPage, fetchData } = props;
   const columns = [
     {
       title: "#",

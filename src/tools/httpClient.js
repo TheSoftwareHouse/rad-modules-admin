@@ -135,12 +135,15 @@ class HttpClient {
     if (!token) return hasAccess;
 
     try {
-      const authResponse = await axios.get(`${process.env.REACT_APP_SECURITY_API_URL}/api/users/has-access`, {
-        params: { resource: "admin-panel/access" },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      const authResponse = await axios.post(
+        `${process.env.REACT_APP_SECURITY_API_URL}/api/users/has-access`,
+        { resources: ["admin-panel/access"] },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
         },
-      });
+      );
       hasAccess = authResponse.data.hasAccess;
     } catch (err) {
       const { response } = err;
