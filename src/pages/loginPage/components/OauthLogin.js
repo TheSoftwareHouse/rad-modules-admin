@@ -4,9 +4,9 @@ import "./OauthLogin.css";
 
 function OauthDivider(props) {
   if (
-    props.loginProviders.indexOf("google") == -1 &&
-    props.loginProviders.indexOf("facebook") == -1 &&
-    props.loginProviders.indexOf("microsoft") == -1
+    props.loginProviders.indexOf("google") === -1 &&
+    props.loginProviders.indexOf("facebook") === -1 &&
+    props.loginProviders.indexOf("microsoft") === -1
   ) {
     return null;
   }
