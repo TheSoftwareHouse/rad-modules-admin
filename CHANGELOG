@@ -2,6 +2,10 @@ All notable changes to this project will be documented in this file.
 
 ## admin panel
 
+### 2020-10-25 v0.0.14
+- REACT_APP_LOGOUT_URL env added, useful for working with Keycloak auth server
+  (REACT_APP_LOGOUT_URL: "https://{KEYCLOAK_HOST:PORT}/auth/realms/{REALM}/protocol/openid-connect/logout?redirect_uri=https://{RAD_ADMIN_URL}}/logout")
+
 ### 2020-10-20 v0.0.13
 - Add OpenId Connect / Keycloak auth provider
 

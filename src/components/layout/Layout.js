@@ -10,7 +10,17 @@ const profileMenu = logout => (
   <Menu>
     <Menu.Divider />
     <Menu.Item>
-      <a onClick={logout}>Logout</a>
+      <a
+        onClick={() => {
+          if (process.env.REACT_APP_LOGOUT_URL) {
+            window.location = process.env.REACT_APP_LOGOUT_URL;
+          } else {
+            logout();
+          }
+        }}
+      >
+        Logout
+      </a>
     </Menu.Item>
   </Menu>
 );
