@@ -31,6 +31,7 @@ export function LoginPage(props) {
           googleClientUrl={process.env.REACT_APP_GOOGLE_AUTH_URL}
           facebookClientUrl={process.env.REACT_APP_FACEBOOK_AUTH_URL}
           microsoftClientUrl={process.env.REACT_APP_MICROSOFT_AUTH_URL}
+          keycloakClientUrl={process.env.REACT_APP_KEYCLOAK_AUTH_URL}
         ></OauthLogin>
         <div className="powered-by">
           <p>Powered by RAD Modules</p>

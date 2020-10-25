@@ -2,6 +2,26 @@
   font-size: 14px !important;
 }
 
+/* OpenID Connect */
+.loginBtn--keycloak {
+  background-color: #F78C40;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.loginBtn--keycloak-img {
+  height: 15px;
+  margin-bottom: 7px;
+}
+
+.loginBtn--keycloak:hover,
+.loginBtn--keycloak:focus {
+  background-color: #fff;
+  color: #F78C40;
+}
+
+
 /* Google */
 .loginBtn--google {
   background-color: #DD4B39;

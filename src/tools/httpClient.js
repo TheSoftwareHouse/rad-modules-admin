@@ -88,9 +88,19 @@ class HttpClient {
         return this.loginFacebook(code, `${this.appUrl.origin}/login-callback/facebook`);
       case "microsoft":
         return this.loginMicrosoft(code, `${this.appUrl.origin}/login-callback/microsoft`);
+      case "keycloak":
+        return this.loginKeycloak(code, `${this.appUrl.origin}/login-callback/keycloak`);
       default:
         throw new Error("Unknown provider");
     }
+  }
+
+  loginKeycloak(code, redirectUrl) {
+    return axios
+      .get(
+        `${process.env.REACT_APP_SECURITY_API_URL}/api/users/oauth-redirect/keycloak?code=${code}&redirectUrl=${redirectUrl}`,
+      )
+      .then(res => res.data);
   }
 
   loginGoogle(code, redirectUrl) {
