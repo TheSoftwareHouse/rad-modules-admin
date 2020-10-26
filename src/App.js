@@ -21,6 +21,7 @@ import { NotificationsPage } from "./pages/notifications/NotificationsPage";
 import { UsersPage } from "./pages/users/UsersPage";
 import { NotFoundPage } from "./pages/not-found/NotFoundPage";
 import { isModuleEnabled, moduleAvailability } from "./tools/moduleAvailability";
+import { LogoutPage } from "./pages/logout/LogoutPage";
 
 function App() {
   const loggedOutUser = {
@@ -129,6 +130,7 @@ function App() {
                   <Route path="/attributes" component={moduleAvailability("security", AttributesPage)} exact />
                   <Route path="/access-keys" component={moduleAvailability("security", AccessKeysPage)} exact />
                   <Route path="/jobs" component={moduleAvailability("scheduler", JobsPage)} exact />
+                  <Route path="/logout" component={LogoutPage} />
                   <Route
                     path="/notifications"
                     component={moduleAvailability("notifications", NotificationsPage)}
